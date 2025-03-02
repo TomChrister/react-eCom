@@ -1,10 +1,50 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Layout } from '../layout/index.jsx';
+import { ContactPage } from '../pages/ContactPage.jsx';
+import { ProductPage } from '../pages/ProductPage.jsx';
+import { CheckoutPage } from '../pages/CheckoutPage.jsx';
+import { CheckoutSuccessPage } from '../pages/CheckoutSuccessPage.jsx';
+import { Cart } from '../pages/Cart.jsx';
+import { Home } from '../pages/Home.jsx';
 import './index.css'
-import App from './App.jsx'
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <Layout />,
+        children: [
+            {
+                path: '',
+                element: <Home />,
+            },
+            {
+                path: 'contact',
+                element: <ContactPage />
+            },
+            {
+                path: 'cart',
+                element: <Cart />
+            },
+            {
+                path: 'product',
+                element: <ProductPage />,
+            },
+            {
+                path: 'checkout',
+                element: <CheckoutPage />,
+            },
+            {
+                path: 'checkoutSuccess',
+                element: <CheckoutSuccessPage />,
+            }
+        ]
+    },
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </StrictMode>,
 )
