@@ -6,7 +6,6 @@ import { ContactPage } from '../pages/ContactPage.jsx';
 import { ProductPage } from '../pages/ProductPage.jsx';
 import { CheckoutPage } from '../pages/CheckoutPage.jsx';
 import { CheckoutSuccessPage } from '../pages/CheckoutSuccessPage.jsx';
-import { Cart } from '../pages/Cart.jsx';
 import { Home } from '../pages/Home.jsx';
 import './index.css'
 
@@ -22,10 +21,6 @@ const router = createBrowserRouter([
             {
                 path: 'contact',
                 element: <ContactPage />
-            },
-            {
-                path: 'cart',
-                element: <Cart />
             },
             {
                 path: 'product/:id',
