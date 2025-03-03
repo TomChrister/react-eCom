@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useCart } from '../store/store.jsx';
 
 export function ProductPage() {
+    const {products, addToCart} = useCart();
+
     const {id} = useParams();
     const [product, setProduct] = useState();
     const [loading, setLoading] = useState(true);
@@ -34,7 +37,8 @@ export function ProductPage() {
             <h1 className='text-2xl'>{product.title}</h1>
             <img src={product.image.url} alt={product.title} className='w-20'/>
             <p>{product.price}</p>
-            <button className='bg-green-500 text-white p-2 rounded-sm'>
+            <button className='bg-green-500 text-white p-2 rounded-sm' type='submit'
+                    onClick={() => addToCart(product)}>
                 Legg til i handlekurv
             </button>
         </>
