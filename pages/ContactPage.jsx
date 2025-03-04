@@ -1,5 +1,9 @@
+import { ContactForm } from '../components/form/ContactForm.jsx';
+
 export function ContactPage () {
     return (
-        <h1>Contact</h1>
+        <>
+            <ContactForm />
+        </>
     )
 }

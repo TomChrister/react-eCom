@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Layout } from '../layout/index.jsx';
+import { Layout } from '../components/layout/index.jsx';
 import { ContactPage } from '../pages/ContactPage.jsx';
 import { ProductPage } from '../pages/ProductPage.jsx';
 import { CheckoutPage } from '../pages/CheckoutPage.jsx';

@@ -10,7 +10,7 @@ export function Layout() {
                 <main className='grow'>
                     <Outlet/>
                 </main>
-                <Footer />
+                <Footer/>
             </div>
         </>
     )
