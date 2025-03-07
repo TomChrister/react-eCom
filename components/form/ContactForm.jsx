@@ -7,7 +7,7 @@ export function ContactForm() {
         <>
             <form
                 action=""
-                className="flex flex-col gap-4 mx-auto max-w-lg p-6 bg-white rounded-lg shadow-lg"
+                className="flex flex-col gap-2 mx-auto max-w-lg p-6 bg-white rounded-lg shadow-lg"
                 onSubmit={handleSubmit((data) => { console.log(data); })}
             >
                 <label htmlFor="name" className="text-lg font-semibold">Full name</label>
