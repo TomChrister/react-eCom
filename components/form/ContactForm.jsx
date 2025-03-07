@@ -5,79 +5,74 @@ export function ContactForm() {
 
     return (
         <>
-            <form action='' className='flex flex-col gap-1 mx-auto max-w-md' onSubmit={handleSubmit((data) => {console.log(data);})}>
-                <label htmlFor=''>Full name</label>
-                <input className='border rounded-sm' type='text'
-                       {...register('name', {
-                           required: true,
-                           minLength: {
-                               value: 3,
-                               message: 'Name is required'
-                           },
-                       })}
+            <form
+                action=""
+                className="flex flex-col gap-4 mx-auto max-w-lg p-6 bg-white rounded-lg shadow-lg"
+                onSubmit={handleSubmit((data) => { console.log(data); })}
+            >
+                <label htmlFor="name" className="text-lg font-semibold">Full name</label>
+                <input
+                    id="name"
+                    className="border border-gray-300 rounded-sm p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    type="text"
+                    {...register('name', {
+                        required: 'Name is required',
+                        minLength: {
+                            value: 3,
+                            message: 'Name must be at least 3 characters long',
+                        },
+                    })}
                 />
-                {errors.name &&
-                    (errors.name.message ? (
-                        <p className='text-red-500'>{errors.name.message}</p>
-                    ) : (
-                        <p className='text-red-500'>Error</p>
-                    ))}
+                {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
 
-                <label htmlFor=''>Email</label>
-                <input className='border rounded-sm' type='text'
-                       {...register('email', {
-                           required: true,
-                           pattern: {
-                               value: /noroff\.no/,
-                               message: 'Please enter a email with @noroff.no',
-                           },
-                       })}
+                <label htmlFor="email" className="text-lg font-semibold">Email</label>
+                <input
+                    id="email"
+                    className="border border-gray-300 rounded-sm p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    type="email"
+                    {...register('email', {
+                        required: 'Email is required',
+                        pattern: {
+                            value: /noroff\.no/,
+                            message: 'Please enter a valid email with @noroff.no',
+                        },
+                    })}
                 />
-                {errors.email &&
-                    (errors.email.message ? (
-                        <p className='text-red-500'>{errors.email.message}</p>
-                    ) : (
-                        <p className='text-red-500'>Unexpected error</p>
-                    ))}
+                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
 
-                <label htmlFor=''>Subject</label>
-                <input className='border rounded-sm'
-                       type='text'
-                       {...register('subject', {
-                           required: true,
-                           minLength: {
-                               value: 3,
-                               message: 'Must be at least 3 characters',
-                           },
-
-                       })}
+                <label htmlFor="subject" className="text-lg font-semibold">Subject</label>
+                <input
+                    id="subject"
+                    className="border border-gray-300 rounded-sm p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    type="text"
+                    {...register('subject', {
+                        required: 'Subject is required',
+                        minLength: {
+                            value: 3,
+                            message: 'Subject must be at least 3 characters long',
+                        },
+                    })}
                 />
-                {errors.subject &&
-                    (errors.subject.message ? (
-                        <p className='text-red-500'>{errors.subject.message}</p>
-                    ) : (
-                        <p className='text-red-500'>Error</p>
-                    ))}
+                {errors.subject && <p className="text-red-500 text-sm">{errors.subject.message}</p>}
 
-                <label htmlFor=''>Message</label>
-                <input className='border rounded-sm'
-                       type='text'
-                       {...register('message', {
-                           required: true,
-                           minLength: {
-                               value: 3,
-                               message: 'Message must be at least 3 characters',
-                           },
-                       })}
+                <label htmlFor="message" className="text-lg font-semibold">Message</label>
+                <textarea
+                    id="message"
+                    className="border border-gray-300 rounded-sm p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    rows="4"
+                    {...register('message', {
+                        required: 'Message is required',
+                        minLength: {
+                            value: 3,
+                            message: 'Message must be at least 3 characters long',
+                        },
+                    })}
                 />
-                {errors.message &&
-                    (errors.message.message ? (
-                        <p className='text-red-500'>{errors.message.message}</p>
-                    ) : (
-                        <p className='text-red-500'>Error</p>
-                    ))}
+                {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
 
-                <button className='border bg-green-500 text-white rounded-sm p-2 cursor-pointer'>Submit</button>
+                <button className="border bg-green-500 text-white rounded-sm p-2 cursor-pointer hover:bg-green-600 focus:ring-2 focus:ring-green-500 transition-colors">
+                    Submit
+                </button>
             </form>
         </>
     )

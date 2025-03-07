@@ -1,10 +1,10 @@
 import { ProductsList } from '../components/products/ProductsList.jsx';
-import { SearchBar } from '../components/search/SearchBar.jsx';
+import { Hero } from '../components/hero/Hero.jsx';
 
 export function Home() {
     return (
         <div>
-            <SearchBar />
+            <Hero />
             <ProductsList />
         </div>
     )

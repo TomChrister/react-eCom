@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useCart } from '../store/store.jsx';
 
 export function ProductPage() {
-    const {products, addToCart} = useCart();
+    const { addToCart } = useCart();
 
     const {id} = useParams();
     const [product, setProduct] = useState();
@@ -32,15 +32,58 @@ export function ProductPage() {
     if (error) return <p>Error: {error}</p>;
     if (!product) return <p>Ingen produktdata funnet.</p>;
 
+    const discount = Math.round(((product.price - product.discountedPrice) / product.price) * 100);
+
     return (
-        <>
-            <h1 className='text-2xl'>{product.title}</h1>
-            <img src={product.image.url} alt={product.title} className='w-20'/>
-            <p>{product.price}</p>
-            <button className='bg-green-500 text-white p-2 rounded-sm' type='submit'
-                    onClick={() => addToCart(product)}>
-                Legg til i handlekurv
+        <div className="mx-auto max-w-4xl p-6 px-4 md:p-12 lg:px-50">
+            <h1 className="text-4xl font-bold text-gray-900">{product.title}</h1>
+            <img src={product.image.url} alt={product.title} className="my-6 w-full rounded-md object-cover max-h-[500px]"/>
+            <p className="text-lg text-gray-700">{product.description}</p>
+            <p className="mt-4 text-xl">
+                <span className="font-semibold">Price: </span>
+                {product.discountedPrice !== product.price ? (
+                    <>
+                        <span className="mr-2 text-red-500 line-through">{product.price} NOK</span>
+                        <span className="font-bold text-green-600">{product.discountedPrice} NOK</span>
+                    </>
+                ) : (
+                    <span>{product.price} NOK</span>
+                )}
+            </p>
+            <div className='mt-2 flex w-22'>
+                <p className='rounded-sm bg-amber-500 p-2 text-white'>-{discount}% off</p>
+            </div>
+            <p className="mt-2 text-lg">
+                <span className="font-semibold">Rating: </span>
+                 {product.rating} / 5
+                <i className="text-yellow-400 fa-solid fa-star"></i>
+            </p>
+            <p className="mt-2 text-lg">
+                <span className="font-semibold"></span>
+                <i className="pr-1 fa-solid fa-hashtag"></i>
+                {product.tags.join(", ")}
+            </p>
+            <h2 className='mt-3 font-bold'>Reviews</h2>
+            {product.reviews.length > 0 ? (
+                <ul className="mt-2 border border-black p-2 space-y-4">
+                    {product.reviews.map((review, index) => (
+                        <li key={index} className="pb-2">
+                            <p className="font-bold">{review.username}:</p>
+                            <p>{review.description}</p>
+                            <p className="text-sm text-gray-500">Rating: {review.rating} / 5
+                                <i className="ml-1 text-yellow-400 fa-solid fa-star"></i>
+                            </p>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className="mt-2 text-gray-500">No reviews yet.</p>
+            )}
+            <button
+                className="mt-6 cursor-pointer bg-green-500 px-6 py-3 text-white transition duration-200 hover:bg-green-600"
+                onClick={() => addToCart(product)}>
+                Add to cart
             </button>
-        </>
-    )
+        </div>
+    );
 }
