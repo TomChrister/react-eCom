@@ -13,7 +13,7 @@ export function Header() {
                         <Link to='/contact'>Contact</Link>
                     </div>
                     <Link to='/checkout'>
-                        <img src='/public/cart.svg' alt='Cart Image' className='w-6'/>
+                        <img src='/cart.svg' alt='Cart Image' className='w-6'/>
                         {products.length > 0 && (
                             <span className='absolute top-6 right-60 text-md rounded-full px-1'>
                             {products.length}
