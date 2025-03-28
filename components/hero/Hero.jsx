@@ -1,7 +1,7 @@
 export function Hero() {
     return (
         <>
-            <div className='flex flex-row justify-center gap-2 items-center'>
+            <div className='flex flex-row justify-center gap-2 items-center pt-2'>
                 <div>
                     <img src='/Online-shopping-amico.svg' alt='shopping img' className='w-80'/>
                 </div>
