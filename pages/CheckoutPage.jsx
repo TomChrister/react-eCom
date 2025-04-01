@@ -1,12 +1,17 @@
 import { useCart } from '../store/store.jsx';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export function CheckoutPage() {
+    useEffect(() => {
+        document.title = 'Checkout page';
+    }, []);
+
     const { products, removeFromCart } = useCart();
     const totalSum = products.reduce((sum, product) => sum + product.price, 0);
 
     // Quantity for products
-    const groupedProducts = products.reduce((acc, product) => {
+     const groupedProducts = products.reduce((acc, product) => {
         const existingProduct = acc.find(p => p.id === product.id);
         if (existingProduct) {
             existingProduct.quantity += 1;
