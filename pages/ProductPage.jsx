@@ -3,23 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useCart } from '../store/store.jsx';
 
 export function ProductPage() {
-    useEffect(() => {
-        document.title = 'Product page';
-    }, []);
-
     const { addToCart } = useCart();
     const {id} = useParams();
     const [product, setProduct] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [added, setAdded] = useState(false);
-
-    const handleAddToCart = () => {
-        setAdded(true);
-        addToCart(product);
-
-        setTimeout(() => setAdded(false), 1500);
-    };
 
     useEffect(() => {
         async function fetchProducts() {
@@ -38,6 +27,19 @@ export function ProductPage() {
 
         fetchProducts();
     }, [id]);
+
+    useEffect(() => {
+        if (product) {
+            document.title = product.title;
+        }
+    }, [product]);
+
+    const handleAddToCart = () => {
+        setAdded(true);
+        addToCart(product);
+
+        setTimeout(() => setAdded(false), 1500);
+    };
 
     if (loading) return <p>Laster inn...</p>;
     if (error) return <p>Error: {error}</p>;
