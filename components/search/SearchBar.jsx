@@ -4,7 +4,7 @@ export function SearchBar({onSearch}) {
     const [search, setSearch] = useState('');
 
     return (
-        <form className="max-w-md mb-6">
+        <form className="max-w-md mb-6" onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="default-search"
                    className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div className="relative">
@@ -23,7 +23,8 @@ export function SearchBar({onSearch}) {
                        onChange={(e) => {
                            setSearch(e.target.value);
                            onSearch(e.target.value);
-                       }} />
+                       }}
+                />
             </div>
         </form>
     )

@@ -7,8 +7,8 @@ export function ContactForm() {
         <>
             <form
                 action=""
-                className="flex flex-col gap-2 mx-auto max-w-lg p-6 bg-white rounded-lg shadow-lg"
-                onSubmit={handleSubmit((data) => { console.log(data); })}
+                className="flex flex-col gap-2 mx-auto max-w-lg my-5 p-6 bg-white rounded-lg shadow-lg"
+                onSubmit={handleSubmit((data) => { console.log(data); })} noValidate
             >
                 <label htmlFor="name" className="text-lg font-semibold">Full name</label>
                 <input
@@ -70,7 +70,7 @@ export function ContactForm() {
                 />
                 {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
 
-                <button className="border bg-green-500 text-white rounded-sm p-2 cursor-pointer hover:bg-green-600 focus:ring-2 focus:ring-green-500 transition-colors">
+                <button className="border bg-green-700 text-white rounded-sm p-2 cursor-pointer hover:bg-green-800 focus:ring-2 focus:ring-green-500 transition-colors">
                     Submit
                 </button>
             </form>

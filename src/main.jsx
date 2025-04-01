@@ -7,6 +7,7 @@ import { ProductPage } from '../pages/ProductPage.jsx';
 import { CheckoutPage } from '../pages/CheckoutPage.jsx';
 import { CheckoutSuccessPage } from '../pages/CheckoutSuccessPage.jsx';
 import { Home } from '../pages/Home.jsx';
+import 'flowbite';
 import './index.css'
 
 const router = createBrowserRouter([

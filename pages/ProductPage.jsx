@@ -3,12 +3,23 @@ import { useParams } from 'react-router-dom';
 import { useCart } from '../store/store.jsx';
 
 export function ProductPage() {
-    const { addToCart } = useCart();
+    useEffect(() => {
+        document.title = 'Product page';
+    }, []);
 
+    const { addToCart } = useCart();
     const {id} = useParams();
     const [product, setProduct] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [added, setAdded] = useState(false);
+
+    const handleAddToCart = () => {
+        setAdded(true);
+        addToCart(product);
+
+        setTimeout(() => setAdded(false), 1500);
+    };
 
     useEffect(() => {
         async function fetchProducts() {
@@ -44,14 +55,14 @@ export function ProductPage() {
                 {product.discountedPrice !== product.price ? (
                     <>
                         <span className="mr-2 text-red-500 line-through">{product.price} NOK</span>
-                        <span className="font-bold text-green-600">{product.discountedPrice} NOK</span>
+                        <span className="font-bold text-green-700">{product.discountedPrice} NOK</span>
                     </>
                 ) : (
                     <span>{product.price} NOK</span>
                 )}
             </p>
             <div className='mt-2 flex w-22'>
-                <p className='rounded-sm bg-amber-500 p-2 text-white'>-{discount}% off</p>
+                <p className='rounded-sm bg-amber-600 p-2 text-white'>-{discount}% off</p>
             </div>
             <p className="mt-2 text-lg">
                 <span className="font-semibold">Rating: </span>
@@ -80,9 +91,10 @@ export function ProductPage() {
                 <p className="mt-2 text-gray-500">No reviews yet.</p>
             )}
             <button
-                className="mt-6 cursor-pointer bg-green-500 px-6 py-3 text-white transition duration-200 hover:bg-green-600"
-                onClick={() => addToCart(product)}>
-                Add to cart
+                className="mt-6 cursor-pointer bg-green-600 px-6 w-[160px] py-3 text-white transition duration-200 hover:bg-green-700"
+                onClick={(handleAddToCart)}
+            >
+                {added ? 'Added to cart!' : 'Add to cart'}
             </button>
         </div>
     );
